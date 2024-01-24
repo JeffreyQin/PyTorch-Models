@@ -1,3 +1,6 @@
 torch
 scikit-learn
 pyimagesearch
+scikit-image
+matplotlib
+tqdm

@@ -11,4 +11,5 @@ def get_training_model(in_features=4, hidden_dim=8, num_classes=3):
         ("output_layer", nn.Linear(hidden_dim, num_classes))
     ]));
 
+
     return model
