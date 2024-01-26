@@ -12,13 +12,13 @@ transform = transforms.Compose(
 
 batch_size=4
 
-trainset = torchvision.datasets.CIFAR10(root='/data', train=True, download=False, transform=transform)
-train_dataloader = torch.utils.data.DataLoader(trainset, batch_size=batch_size, shuffle=True, num_workers=2) # num_workers parameter configures cpu
+trainset = torchvision.datasets.CIFAR10(root='/data', train=True, download=True, transform=transform)
+train_dataloader = torch.utils.data.DataLoader(trainset, batch_size=batch_size, shuffle=True) # num_workers parameter configures cpu
 
-testset = torchvision.datasets.CIFAR10(root='/data', train=False, download=False, transform=transform)
-test_dataloader = torch.utils.data.DataLoader(testset, batch_size=batch_size, shuffle=False, num_workers=2)
+testset = torchvision.datasets.CIFAR10(root='/data', train=False, download=True, transform=transform)
+test_dataloader = torch.utils.data.DataLoader(testset, batch_size=batch_size, shuffle=False)
 
-classes = {
+classes = [
     'plane',
     'car',
     'bird',
@@ -29,7 +29,7 @@ classes = {
     'horse',
     'ship',
     'truck'
-}
+]
 
 """
 # load an image (not working)

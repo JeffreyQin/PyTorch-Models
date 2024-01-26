@@ -20,15 +20,19 @@ optimizer = optim.SGD(model.parameters(), lr=lr, momentum=momentum)
 
 for epoch in range(epochs):
     running_loss = 0.0
-    for batch_index, (inputs, labels) in enumerate(train_dataloader, 0):
-        print('dadasdasasdadsadasd')
+    for batch_index, (inputs, labels) in tqdm(enumerate(train_dataloader, 0)):
+
         prediction = model(inputs)
         loss = loss_fn(prediction, labels)
-        print('dadasdasasdadsadasd')
+
         optimizer.zero_grad()
         loss.backward()
         optimizer.step()
-        print('dsadas')
+
         running_loss += loss.item()
-        if batch_index % 2000 == 1999:
-            print(f'[{epoch + 1}, {sample_index + 1:5d}] loss: {running_loss / 2000:.3f}')
+
+    print(f'[{epoch + 1}] loss: {running_loss / 2000:.3f}')
+
+# save model
+PATH = './Pytorch-classifier-CNN/cifar_net.pth'
+torch.save(model.state_dict(), PATH)
