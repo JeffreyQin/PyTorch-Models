@@ -14,8 +14,8 @@ outputs = model(images)
 
 _, predicted = torch.max(outputs, 1) # 1 is the dimension on which max is calculated
 # torch.max(outputs, 1) returns two tensors of batch_size dimensions
-# entry i in first tensor is the value of maximum predicted class in sample i in the class
-# entry i in second tensor is the index of maximum predicted class in sample i in the class
+# entry i in first tensor is the value of maximum predicted class in sample i in the batch
+# entry i in second tensor is the index of maximum predicted class in sample i in the batch
 
 print('sample prediction test result: predicted: ', ' '.join(f'{classes[predicted[j]]:5s}' for j in range(4)))
 
