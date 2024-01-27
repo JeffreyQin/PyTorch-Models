@@ -31,7 +31,7 @@ for epoch in range(epochs):
 
         running_loss += loss.item()
 
-    print(f'[{epoch + 1}] loss: {running_loss / 2000:.3f}')
+    print(f'[{epoch + 1}] loss: {running_loss:.3f}')
 
 # save model
 PATH = './Pytorch-classifier-CNN/cifar_net.pth'
