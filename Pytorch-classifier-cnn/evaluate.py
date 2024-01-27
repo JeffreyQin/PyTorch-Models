@@ -31,7 +31,7 @@ with torch.no_grad():
         images, labels = data
         
         prediction = model(images)
-        _, predicted = torch.max(outputs.data, 1)
+        _, predicted = torch.max(prediction.data, 1)
         
         total += labels.size(0)
         correct += (predicted == labels).sum().item() # (predicted == labels) creates a tensor of batch_size dimensions, each is True or False
