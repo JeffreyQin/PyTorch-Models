@@ -14,8 +14,8 @@ outputs = model(images)
 
 _, predicted = torch.max(outputs, 1) # 1 is the dimension on which max is calculated
 # torch.max(outputs, 1) returns two tensors of batch_size dimensions
-# entry i in first tensor is the value of maximum predicted class in sample i in the class
-# entry i in second tensor is the index of maximum predicted class in sample i in the class
+# entry i in first tensor is the value of maximum predicted class in sample i in the batch
+# entry i in second tensor is the index of maximum predicted class in sample i in the batch
 
 print('sample prediction test result: predicted: ', ' '.join(f'{classes[predicted[j]]:5s}' for j in range(4)))
 
@@ -31,7 +31,7 @@ with torch.no_grad():
         images, labels = data
         
         prediction = model(images)
-        _, predicted = torch.max(outputs.data, 1)
+        _, predicted = torch.max(prediction.data, 1)
         
         total += labels.size(0)
         correct += (predicted == labels).sum().item() # (predicted == labels) creates a tensor of batch_size dimensions, each is True or False
