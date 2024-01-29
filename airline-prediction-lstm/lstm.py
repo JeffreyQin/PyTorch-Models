@@ -7,12 +7,12 @@ class LSTM(nn.Module):
 
         # input_size = number of features in each input time step
         # hidden_size = dimension of hidden state vectors passed in between consecutive lstm cells
-        # num_layers = number of lstm cells in the same layer
+        # num_layers = number of lstm layers
         # batch_first=true indicates that batch_size is the first dimension of the input
-        self.lstm_layer = nn.LSTM(input_size=1, hidden_size=50, num_layers=4, batch_first=True)
+        # note that number of cells per lstm layer is not specified, and depends on input sequence length
+        self.lstm_layer = nn.LSTM(input_size=1, hidden_size=50, num_layers=1, batch_first=True)
 
         # generates a single output (float) based on all hidden states given to the output layer (all at once)
-        # note: in_feature should be hidden_size * num_layers
         self.linear_layer = nn.Linear(50, 1)
 
     def forward(self, x):
