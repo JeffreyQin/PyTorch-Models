@@ -1,6 +1,8 @@
 import torch
 from torch import nn 
 
+PATH = './joke-text-generator-lstm/lstm-model.pth'
+
 # for more annotation, checkout airline-prediction-lstm
 class LSTM(nn.Module):
     
