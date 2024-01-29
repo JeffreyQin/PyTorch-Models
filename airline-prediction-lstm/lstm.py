@@ -3,15 +3,16 @@ from torch import nn
 
 class LSTM(nn.Module):
     def __init__(self):
-        super(LSTM, self).__init__():
+        super(LSTM, self).__init__()
 
         # input_size = number of features in each input time step
         # hidden_size = dimension of hidden state vectors passed in between consecutive lstm cells
         # num_layers = number of lstm cells in the same layer
         # batch_first=true indicates that batch_size is the first dimension of the input
-        self.lstm_layer = nn.LSTM(input_size=4, hidden_size=50, num_layers=1, batch_first=True)
+        self.lstm_layer = nn.LSTM(input_size=1, hidden_size=50, num_layers=4, batch_first=True)
 
         # generates a single output (float) based on all hidden states given to the output layer (all at once)
+        # note: in_feature should be hidden_size * num_layers
         self.linear_layer = nn.Linear(50, 1)
 
     def forward(self, x):

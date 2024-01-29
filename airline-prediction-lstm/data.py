@@ -3,6 +3,7 @@ import numpy as np
 import pandas as pd 
 from sklearn.model_selection import train_test_split
 import torch
+from torch import utils
 
 
 df = pd.read_csv('dataset.csv')
@@ -18,7 +19,7 @@ plt.show()
 
 train_set, test_set = train_test_split(timeseries, test_size=0.25, shuffle=False)
 
-# function to group timeseries into windows of length "lookback", so that each input step into the lstm has "lookback" features
+# function to group timeseries into windows of length "lookback"
 def create_dataset(dataset, lookback):
     x, y = [], []
     for i in range(len(dataset) - lookback):
@@ -28,8 +29,11 @@ def create_dataset(dataset, lookback):
         y.append(target)
     return torch.tensor(np.array(x)), torch.tensor(np.array(y))
 
-lookback=1
+lookback=4
 trainX, trainY = create_dataset(train_set, lookback=lookback)
 testX, testY = create_dataset(test_set, lookback=lookback)
 
-# dimension of trainX is [107, 1, 1] and trainY is [107, 1, 1]
+# dimension of trainX is [108 - lookback, lookback, 1] and trainY is [108 - lookback, lookback, 1]
+
+train_dataloader = utils.data.DataLoader(utils.data.TensorDataset(trainX, trainY), batch_size = 8, shuffle=True)
+test_dataloader = utils.data.DataLoader(utils.data.TensorDataset(testX,testY), batch_size=8, shuffle=False)
