@@ -19,7 +19,7 @@ def train(dataset, model, args):
         for index, (batchX, batchY) in enumerate(dataloader):
             # (h_state, c_state) passed as parameters set initial hidden/cell states to final hidden/cell states from last batch
             # new (h_state, c_state) produced are the final hidden/cell states from this epoch
-            prediction, (h_state, c_state) = model(x, (h_state, c_state))
+            prediction, (h_state, c_state) = model(batchX, (h_state, c_state))
 
             # _____PRINT DEBUG ON TRANSPOSE DIM
             loss = loss_fn(prediction.transpose(1,2), batchY)
