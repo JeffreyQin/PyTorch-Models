@@ -4,3 +4,4 @@ pyimagesearch
 scikit-image
 matplotlib
 tqdm
+jupyter
